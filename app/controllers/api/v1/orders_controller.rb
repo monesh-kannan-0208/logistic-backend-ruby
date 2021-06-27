@@ -6,12 +6,12 @@ module Api
                 render json: {status: 'success', message: 'loaded orders', data:orders}, status: :ok
             end
             def show
-                order=Order.find(params[:order_id])
+                order=Order.find(params[:id])
                 render json: {status: 'success', message: 'loaded order', data:order}, status: :ok
             end
             def update
-                order = Order.find(params[:order_id])
-                if order.update_attributes(order_params)
+                order = Order.find(params[:id])
+                if order.update(order_params)
                     render json: {status: 'success', message: 'updated status', data:order}, status: :ok
                 else
                     render json: {status: 'Error', message: 'Orders not updated', data:order.errors}, status: :unprocessable_entity
